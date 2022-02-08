@@ -1,0 +1,4 @@
+2/8/2022 12:25:01 AM - <AIController> Get(Quanto devo pagar ao 111?) - The given key 'datetime' was not present in the dictionary.
+
+2/8/2022 12:26:44 AM - <AIController> Get(Quanto devo pagar ao 111?) - The given key 'cpf' was not present in the dictionary.
+

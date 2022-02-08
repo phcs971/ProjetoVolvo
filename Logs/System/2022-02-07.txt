@@ -1,0 +1,726 @@
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.379 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.384 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).CarsNumChassi' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.384 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Client.AddressId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.384 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.ClientCpf_cnpj' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.385 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.SellerCpf' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/7/2022 11:38:53 PM - info: 2/7/2022 20:38:53.698 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.816 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Car>()
+          .Include(c => c.Accessories)
+          .Where(c => c.Version == __version_0)'
+
+2/7/2022 11:38:53 PM - dbug: 2/7/2022 20:38:53.929 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Car.Accessories'.
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.391 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Car>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Client Projections:
+                  0 -> Dictionary<IProperty, int> { [Property: Car.NumChassi (string) Required PK AfterSave:Throw MaxLength(20), 0], [Property: Car.Color (string) MaxLength(30), 1], [Property: Car.Mileage (double) Required, 2], [Property: Car.Model (string) Required MaxLength(30), 3], [Property: Car.Version (int) Required, 4], [Property: Car.Year (int) Required, 5] }
+                  1 -> 0
+                  2 -> Dictionary<IProperty, int> { [Property: AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId (no field, int) Indexer Required PK FK AfterSave:Throw, 6], [Property: AccessoryCar (Dictionary<string, object>).CarsNumChassi (no field, string) Indexer Required PK FK Index AfterSave:Throw, 7] }
+                  3 -> Dictionary<IProperty, int> { [Property: Accessory.AccessoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 8], [Property: Accessory.Description (string) Required MaxLength(50), 9] }
+                  4 -> 6
+                  5 -> 7
+                  6 -> 8
+              SELECT c.NumChassi, c.Color, c.Mileage, c.Model, c.Version, c.Year, t.AccessoriesAccessoryId, t.CarsNumChassi, t.AccessoryId, t.Description
+              FROM Cars AS c
+              LEFT JOIN 
+              (
+                  SELECT a.AccessoriesAccessoryId, a.CarsNumChassi, a0.AccessoryId, a0.Description
+                  FROM AccessoryCar AS a
+                  INNER JOIN Accessories AS a0 ON a.AccessoriesAccessoryId == a0.AccessoryId
+              ) AS t ON c.NumChassi == t.CarsNumChassi
+              WHERE c.Version == @__version_0
+              ORDER BY c.NumChassi ASC, t.AccessoriesAccessoryId ASC, t.CarsNumChassi ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Car>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )'
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.490 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.498 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (47ms).
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.520 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.844 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/7/2022 11:38:54 PM - dbug: 2/7/2022 20:38:54.861 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[@__version_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      WHERE [c].[Version] = @__version_0
+      ORDER BY [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/7/2022 11:38:54 PM - info: 2/7/2022 20:38:54.959 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (108ms) [Parameters=[@__version_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      WHERE [c].[Version] = @__version_0
+      ORDER BY [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.017 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.089 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.121 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.136 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.137 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.138 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.140 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.141 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.152 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.156 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.165 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/7/2022 11:38:55 PM - dbug: 2/7/2022 20:38:55.167 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.140 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.143 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).CarsNumChassi' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.144 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Client.AddressId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.144 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.ClientCpf_cnpj' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.144 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.SellerCpf' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:24:44 AM - info: 2/7/2022 21:24:44.355 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.406 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Seller>()'
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.591 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Seller>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Seller.Cpf (string) Required PK AfterSave:Throw MaxLength(11), 0], [Property: Seller.Email (string) Required MaxLength(50), 1], [Property: Seller.Name (string) Required MaxLength(50), 2], [Property: Seller.Phone (string) Required MaxLength(20), 3], [Property: Seller.Wage (double) Required, 4], [Property: Seller.WorkLoad (int) Required, 5] }
+              SELECT s.Cpf, s.Email, s.Name, s.Phone, s.Wage, s.WorkLoad
+              FROM Sellers AS s), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Seller>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )'
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.649 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.654 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (28ms).
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.658 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.864 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.869 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[Cpf], [s].[Email], [s].[Name], [s].[Phone], [s].[Wage], [s].[WorkLoad]
+      FROM [Sellers] AS [s]
+
+2/8/2022 12:24:44 AM - info: 2/7/2022 21:24:44.895 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (27ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[Cpf], [s].[Email], [s].[Name], [s].[Phone], [s].[Wage], [s].[WorkLoad]
+      FROM [Sellers] AS [s]
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.928 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Seller' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.963 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.965 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.970 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:24:44 AM - dbug: 2/7/2022 21:24:44.972 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.640 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.642 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).CarsNumChassi' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.642 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Client.AddressId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.642 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.ClientCpf_cnpj' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.643 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.SellerCpf' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:27:55 AM - info: 2/7/2022 21:27:55.901 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:27:55 AM - dbug: 2/7/2022 21:27:55.990 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Seller>()
+          .Include(s => s.Sales)
+          .Where(s => s.Cpf == __cpf_0)
+          .FirstOrDefault()'
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.083 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Seller.Sales'.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.413 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Seller>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Client Projections:
+                  0 -> Dictionary<IProperty, int> { [Property: Seller.Cpf (string) Required PK AfterSave:Throw MaxLength(11), 0], [Property: Seller.Email (string) Required MaxLength(50), 1], [Property: Seller.Name (string) Required MaxLength(50), 2], [Property: Seller.Phone (string) Required MaxLength(20), 3], [Property: Seller.Wage (double) Required, 4], [Property: Seller.WorkLoad (int) Required, 5] }
+                  1 -> 0
+                  2 -> Dictionary<IProperty, int> { [Property: Sale.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 6], [Property: Sale.CarId (string) Required FK Index, 7], [Property: Sale.ClientCpf_cnpj (no field, string) Shadow FK Index, 8], [Property: Sale.Date (DateTime) Required, 9], [Property: Sale.Installments (int) Required, 10], [Property: Sale.SellerCpf (no field, string) Shadow Required FK Index, 11], [Property: Sale.Value (double) Required, 12] }
+                  3 -> 6
+              SELECT t.Cpf, t.Email, t.Name, t.Phone, t.Wage, t.WorkLoad, s0.Id, s0.CarId, s0.ClientCpf_cnpj, s0.Date, s0.Installments, s0.SellerCpf, s0.Value
+              FROM 
+              (
+                  SELECT TOP(1) s.Cpf, s.Email, s.Name, s.Phone, s.Wage, s.WorkLoad
+                  FROM Sellers AS s
+                  WHERE s.Cpf == @__cpf_0
+              ) AS t
+              LEFT JOIN Sales AS s0 ON t.Cpf == s0.SellerCpf
+              ORDER BY t.Cpf ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Seller>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )
+          .SingleOrDefault()'
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.503 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.514 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (51ms).
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.531 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.788 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.799 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[@__cpf_0='?' (Size = 11)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Cpf], [t].[Email], [t].[Name], [t].[Phone], [t].[Wage], [t].[WorkLoad], [s0].[Id], [s0].[CarId], [s0].[ClientCpf_cnpj], [s0].[Date], [s0].[Installments], [s0].[SellerCpf], [s0].[Value]
+      FROM (
+          SELECT TOP(1) [s].[Cpf], [s].[Email], [s].[Name], [s].[Phone], [s].[Wage], [s].[WorkLoad]
+          FROM [Sellers] AS [s]
+          WHERE [s].[Cpf] = @__cpf_0
+      ) AS [t]
+      LEFT JOIN [Sales] AS [s0] ON [t].[Cpf] = [s0].[SellerCpf]
+      ORDER BY [t].[Cpf]
+
+2/8/2022 12:27:56 AM - info: 2/7/2022 21:27:56.859 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (65ms) [Parameters=[@__cpf_0='?' (Size = 11)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Cpf], [t].[Email], [t].[Name], [t].[Phone], [t].[Wage], [t].[WorkLoad], [s0].[Id], [s0].[CarId], [s0].[ClientCpf_cnpj], [s0].[Date], [s0].[Installments], [s0].[SellerCpf], [s0].[Value]
+      FROM (
+          SELECT TOP(1) [s].[Cpf], [s].[Email], [s].[Name], [s].[Phone], [s].[Wage], [s].[WorkLoad]
+          FROM [Sellers] AS [s]
+          WHERE [s].[Cpf] = @__cpf_0
+      ) AS [t]
+      LEFT JOIN [Sales] AS [s0] ON [t].[Cpf] = [s0].[SellerCpf]
+      ORDER BY [t].[Cpf]
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.903 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Seller' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.958 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Sale' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.988 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Sale' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:27:56 AM - dbug: 2/7/2022 21:27:56.998 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:27:57 AM - dbug: 2/7/2022 21:27:57.002 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:27:57 AM - dbug: 2/7/2022 21:27:57.009 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:27:57 AM - dbug: 2/7/2022 21:27:57.012 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:28:09 AM - info: 2/7/2022 21:28:09.752 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.754 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Car>()
+          .Include(c => c.Accessories)
+          .OrderBy(c => c.Mileage)'
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.758 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Car.Accessories'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.808 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Car>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Client Projections:
+                  0 -> Dictionary<IProperty, int> { [Property: Car.NumChassi (string) Required PK AfterSave:Throw MaxLength(20), 0], [Property: Car.Color (string) MaxLength(30), 1], [Property: Car.Mileage (double) Required, 2], [Property: Car.Model (string) Required MaxLength(30), 3], [Property: Car.Version (int) Required, 4], [Property: Car.Year (int) Required, 5] }
+                  1 -> 0
+                  2 -> Dictionary<IProperty, int> { [Property: AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId (no field, int) Indexer Required PK FK AfterSave:Throw, 6], [Property: AccessoryCar (Dictionary<string, object>).CarsNumChassi (no field, string) Indexer Required PK FK Index AfterSave:Throw, 7] }
+                  3 -> Dictionary<IProperty, int> { [Property: Accessory.AccessoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 8], [Property: Accessory.Description (string) Required MaxLength(50), 9] }
+                  4 -> 6
+                  5 -> 7
+                  6 -> 8
+              SELECT c.NumChassi, c.Color, c.Mileage, c.Model, c.Version, c.Year, t.AccessoriesAccessoryId, t.CarsNumChassi, t.AccessoryId, t.Description
+              FROM Cars AS c
+              LEFT JOIN 
+              (
+                  SELECT a.AccessoriesAccessoryId, a.CarsNumChassi, a0.AccessoryId, a0.Description
+                  FROM AccessoryCar AS a
+                  INNER JOIN Accessories AS a0 ON a.AccessoriesAccessoryId == a0.AccessoryId
+              ) AS t ON c.NumChassi == t.CarsNumChassi
+              ORDER BY c.Mileage ASC, c.NumChassi ASC, t.AccessoriesAccessoryId ASC, t.CarsNumChassi ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Car>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )'
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.809 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.809 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.810 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.811 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.811 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage], [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:28:09 AM - info: 2/7/2022 21:28:09.822 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage], [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.831 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.854 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.866 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.874 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.874 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.876 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.878 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.879 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.879 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.880 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.880 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.880 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:28:09 AM - dbug: 2/7/2022 21:28:09.880 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:29:01 AM - info: 2/7/2022 21:29:01.057 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.061 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.062 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.062 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.062 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.062 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage], [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:01 AM - info: 2/7/2022 21:29:01.065 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage], [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.065 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.065 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.066 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.066 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.067 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.067 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.067 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.067 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.067 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.068 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.068 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.068 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:01 AM - dbug: 2/7/2022 21:29:01.068 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.267 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.270 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'AccessoryCar (Dictionary<string, object>).CarsNumChassi' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.271 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Client.AddressId' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.271 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.ClientCpf_cnpj' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.271 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Sale.SellerCpf' was created in shadow state because there are no eligible CLR members with a matching name.
+
+2/8/2022 12:29:14 AM - info: 2/7/2022 21:29:14.534 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.609 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Car>()
+          .Include(c => c.Accessories)
+          .OrderByDescending(c => c.Mileage)'
+
+2/8/2022 12:29:14 AM - dbug: 2/7/2022 21:29:14.703 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Car.Accessories'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.071 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Car>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Client Projections:
+                  0 -> Dictionary<IProperty, int> { [Property: Car.NumChassi (string) Required PK AfterSave:Throw MaxLength(20), 0], [Property: Car.Color (string) MaxLength(30), 1], [Property: Car.Mileage (double) Required, 2], [Property: Car.Model (string) Required MaxLength(30), 3], [Property: Car.Version (int) Required, 4], [Property: Car.Year (int) Required, 5] }
+                  1 -> 0
+                  2 -> Dictionary<IProperty, int> { [Property: AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId (no field, int) Indexer Required PK FK AfterSave:Throw, 6], [Property: AccessoryCar (Dictionary<string, object>).CarsNumChassi (no field, string) Indexer Required PK FK Index AfterSave:Throw, 7] }
+                  3 -> Dictionary<IProperty, int> { [Property: Accessory.AccessoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 8], [Property: Accessory.Description (string) Required MaxLength(50), 9] }
+                  4 -> 6
+                  5 -> 7
+                  6 -> 8
+              SELECT c.NumChassi, c.Color, c.Mileage, c.Model, c.Version, c.Year, t.AccessoriesAccessoryId, t.CarsNumChassi, t.AccessoryId, t.Description
+              FROM Cars AS c
+              LEFT JOIN 
+              (
+                  SELECT a.AccessoriesAccessoryId, a.CarsNumChassi, a0.AccessoryId, a0.Description
+                  FROM AccessoryCar AS a
+                  INNER JOIN Accessories AS a0 ON a.AccessoriesAccessoryId == a0.AccessoryId
+              ) AS t ON c.NumChassi == t.CarsNumChassi
+              ORDER BY c.Mileage DESC, c.NumChassi ASC, t.AccessoriesAccessoryId ASC, t.CarsNumChassi ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Car>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )'
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.154 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.162 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (43ms).
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.168 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.432 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.438 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage] DESC, [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:15 AM - info: 2/7/2022 21:29:15.476 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      ORDER BY [c].[Mileage] DESC, [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.522 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.575 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.597 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.609 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.612 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.612 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.613 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.614 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'AccessoryCar' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.614 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Accessory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.620 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.623 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.630 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:15 AM - dbug: 2/7/2022 21:29:15.632 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+
+2/8/2022 12:29:30 AM - info: 2/7/2022 21:29:30.333 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 6.0.1 initialized 'DealershipContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.1' with options: None
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.337 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Car>()
+          .Include(c => c.Accessories)
+          .Where(c => c.Version == __version_0)'
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.338 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Car.Accessories'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.353 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Car>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Client Projections:
+                  0 -> Dictionary<IProperty, int> { [Property: Car.NumChassi (string) Required PK AfterSave:Throw MaxLength(20), 0], [Property: Car.Color (string) MaxLength(30), 1], [Property: Car.Mileage (double) Required, 2], [Property: Car.Model (string) Required MaxLength(30), 3], [Property: Car.Version (int) Required, 4], [Property: Car.Year (int) Required, 5] }
+                  1 -> 0
+                  2 -> Dictionary<IProperty, int> { [Property: AccessoryCar (Dictionary<string, object>).AccessoriesAccessoryId (no field, int) Indexer Required PK FK AfterSave:Throw, 6], [Property: AccessoryCar (Dictionary<string, object>).CarsNumChassi (no field, string) Indexer Required PK FK Index AfterSave:Throw, 7] }
+                  3 -> Dictionary<IProperty, int> { [Property: Accessory.AccessoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 8], [Property: Accessory.Description (string) Required MaxLength(50), 9] }
+                  4 -> 6
+                  5 -> 7
+                  6 -> 8
+              SELECT c.NumChassi, c.Color, c.Mileage, c.Model, c.Version, c.Year, t.AccessoriesAccessoryId, t.CarsNumChassi, t.AccessoryId, t.Description
+              FROM Cars AS c
+              LEFT JOIN 
+              (
+                  SELECT a.AccessoriesAccessoryId, a.CarsNumChassi, a0.AccessoryId, a0.Description
+                  FROM AccessoryCar AS a
+                  INNER JOIN Accessories AS a0 ON a.AccessoriesAccessoryId == a0.AccessoryId
+              ) AS t ON c.NumChassi == t.CarsNumChassi
+              WHERE c.Version == @__version_0
+              ORDER BY c.NumChassi ASC, t.AccessoriesAccessoryId ASC, t.CarsNumChassi ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Car>, 
+          ProjetoVolvo.Models.DealershipContext, 
+          False, 
+          False, 
+          True
+      )'
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.357 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.357 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.362 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.364 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.370 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[@__version_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      WHERE [c].[Version] = @__version_0
+      ORDER BY [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:30 AM - info: 2/7/2022 21:29:30.400 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (36ms) [Parameters=[@__version_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[NumChassi], [c].[Color], [c].[Mileage], [c].[Model], [c].[Version], [c].[Year], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi], [t].[AccessoryId], [t].[Description]
+      FROM [Cars] AS [c]
+      LEFT JOIN (
+          SELECT [a].[AccessoriesAccessoryId], [a].[CarsNumChassi], [a0].[AccessoryId], [a0].[Description]
+          FROM [AccessoryCar] AS [a]
+          INNER JOIN [Accessories] AS [a0] ON [a].[AccessoriesAccessoryId] = [a0].[AccessoryId]
+      ) AS [t] ON [c].[NumChassi] = [t].[CarsNumChassi]
+      WHERE [c].[Version] = @__version_0
+      ORDER BY [c].[NumChassi], [t].[AccessoriesAccessoryId], [t].[CarsNumChassi]
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.401 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'DealershipContext' started tracking 'Car' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.403 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.403 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.404 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'Dealership' on server 'localhost'.
+
+2/8/2022 12:29:30 AM - dbug: 2/7/2022 21:29:30.404 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'DealershipContext' disposed.
+

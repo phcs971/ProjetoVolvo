@@ -10,6 +10,7 @@ builder.Services.AddControllers()
         options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
     });
 
+builder.Services.AddMvc().AddControllersAsServices();
 
 builder.Services.AddDbContext<DealershipContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

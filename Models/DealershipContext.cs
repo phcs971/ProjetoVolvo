@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using ProjetoVolvo.Singletons;
 
 namespace ProjetoVolvo.Models {
     public class DealershipContext : DbContext {
@@ -11,7 +12,9 @@ namespace ProjetoVolvo.Models {
         public DbSet<Seller> Sellers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            optionsBuilder.LogTo(s => LogSingleton.Instance.SystemLog(s));
             optionsBuilder.UseSqlServer("Server=localhost;Database=Dealership;User=sa;Password=Volvo@123");
+
             // optionsBuilder.UseSqlServer("Server=.\;Database=Dealership;Trusted_Connection=True");
         }
 
